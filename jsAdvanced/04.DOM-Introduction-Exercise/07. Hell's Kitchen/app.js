@@ -78,4 +78,5 @@ function formattingWorkers(workers){
    });
    return formated;
 }
+
 }
