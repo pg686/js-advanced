@@ -2,8 +2,9 @@ function solve() {
    document.querySelector('#btnSend').addEventListener('click', onClick);
 
    function onClick () {
-      let input =document.querySelector('#inputs textarea').value.split('("\,(|\n)")');
-      let restourants = [];
+      let inputText =document.querySelector('#inputs textarea').value;
+      let input = JSON.parse(inputText);
+      let restourants = {};
       for(let el of input){
 
          let [restourantName, workers] = el.trim().split(" - ");
@@ -17,20 +18,29 @@ function solve() {
          acc.push({workerName: key, workerSalary: Number(convertedVal[1])});
          return acc;
          }, [] );
-let currentRestorant = createObj(restourantName,newArr);
-restourants.push(currentRestorant);
+         if(!restourants[restourantName]){
+           restourants[restourantName] =  createObj(newArr);
+                  
+         }else{
+            restourants[restourantName].workers =restourants[restourantName].workers.concat(newArr);
+          
+         }
+
+
+
 
       }
+      let bestRestourant = Object.entries(restourants).sort((a,b) => b[1].avarageSalary() - a[1].avarageSalary())[0];
+
 
       //   TODO:
-      let bestRestourant = getBestRestouranat(restourants);
       document.querySelector('#bestRestaurant p').textContent = formattingBestRestourant(bestRestourant);
-      document.querySelector('#workers p').textContent = formattingWorkers(bestRestourant.workers);
+      document.querySelector('#workers p').textContent = formattingWorkers(bestRestourant[1].workers);
     
    }
-   function createObj(restourantName,workers){
+   function createObj(workers){
 return {
-   name: restourantName,
+   
    workers:workers,
    avarageSalary,
    bestSalary: function() {
@@ -55,7 +65,7 @@ return acc;
       return restourants.sort((a,b) => b.avarageSalary() - a.avarageSalary() )[0];
    }
    function formattingBestRestourant(bestRestourant) {
-      let string = 'Name: '+bestRestourant.name+ ' Average Salary: '+bestRestourant.avarageSalary().toFixed(2)+ ' Best Salary: ' +bestRestourant.bestSalary().toFixed(2);
+      let string = 'Name: '+bestRestourant[0]+ ' Average Salary: '+bestRestourant[1].avarageSalary().toFixed(2)+ ' Best Salary: ' +bestRestourant[1].bestSalary().toFixed(2);
    return string;
 }
 function formattingWorkers(workers){
