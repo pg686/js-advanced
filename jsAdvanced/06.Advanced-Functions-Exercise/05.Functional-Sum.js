@@ -1,12 +1,13 @@
-function add(sum){
+function add(num){
     let sum = 0;
     function inner(number){
         sum += number;
         return inner;
     }
-    inner.toString= () => {
+    inner.toString = () => {
         return sum;
     }
-    return inner(sum)
+    return inner(num)
 }
-add(1)(6)(-3)
+let a =add(1)(6)(-3)
+console.log(a.toString())
