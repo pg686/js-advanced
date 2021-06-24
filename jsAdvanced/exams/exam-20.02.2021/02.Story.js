@@ -51,8 +51,8 @@ return `${username} disliked ${this.title}`
 
     toString(sortingType){
         let sortType = {
-            "asc" : (a,b) => a.Id.localeCompare(b.Id),
-            "desc":(a,b) => b.Id.localeCompare(a.Id),
+            "asc" : (a,b) => a.Id - b.Id,
+            "desc":(a,b) => b.Id-a.Id,
             "username" : (a,b) => a.Username.localeCompare(b.Username)
         }
 let result = `Title: ${this.title}

@@ -1,0 +1,16 @@
+{
+  "name": "exam-20.02.2021",
+  "version": "1.0.0",
+  "main": "02.Story.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.1"
+  }
+}
