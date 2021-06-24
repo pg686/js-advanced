@@ -1,3 +1,6 @@
+const { describe }  = require('mocha')
+const { assert }  = require('chai')
+
 const numberOperations = {
     powNumber: function (num) {
         return num * num;
@@ -31,3 +34,10 @@ const numberOperations = {
         return resultArr
     }
 };
+
+ describe('Test' , function() {
+     it('powNumber' , function() {
+         
+     })
+ })   
+
