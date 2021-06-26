@@ -1,7 +1,7 @@
 class Bank{
     constructor(bankName){
 
-this.bankName = bankName;
+this._bankName = bankName;
 this.allCustomers  = []
     }
     newCustomer({firstName, lastName, personalId}){
@@ -51,7 +51,7 @@ current.transactions.push(`${current.transactions.length+1}. ${current.firstName
             getTransactions.push(current.transactions[i]);
         }
        
-    let     result = `Bank name: ${this.bankName}\nCustomer name: ${current.firstName} ${current.lastName}\n`
+    let     result = `Bank name: ${this._bankName}\nCustomer name: ${current.firstName} ${current.lastName}\n`
 result+= `Customer ID: ${current.personalId}\nTotal Money: ${current.totalMoney}$\n`;
 result+= `Transactions:\n${getTransactions.join('\n')}`
 return result;

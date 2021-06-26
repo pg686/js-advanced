@@ -3,7 +3,7 @@ class Story {
     constructor(title, creator){
         this.title = title;
         this.creator = creator;
-        this.comments = [];
+        this._comments = [];
         this._likes = [];
 
     }
@@ -39,11 +39,11 @@ return `${username} disliked ${this.title}`
 
     }
     comment (username, content, id){
-        if(id === undefined || !this.comments.find(x=> x.Id == id)){
-            this.comments.push({Id: `${this.comments.length+1}`, Username: `${username}`, Content: `${content}` , Replies: []})
+        if(id === undefined || !this._comments.find(x=> x.Id == id)){
+            this._comments.push({Id: `${this._comments.length+1}`, Username: `${username}`, Content: `${content}` , Replies: []})
     return `${username} commented on ${this.title}`        
         }
-      let comment =   this.comments.find(x => x.Id == id)
+      let comment =   this._comments.find(x => x.Id == id)
       let repliesCount = comment.Replies.length;
         comment.Replies.push({Id: `${comment.Id}.${repliesCount+1}`,Username: `${username}`, Content: `${content}` });
    return `You replied successfully`
@@ -61,7 +61,7 @@ Likes: ${this._likes.length}
 Comments:`
 
 
-this.comments.sort(sortType[sortingType]).forEach(x=> 
+this._comments.sort(sortType[sortingType]).forEach(x=> 
     { result += `\n-- ${x.Id}. ${x.Username}: ${x.Content}`;
 if(x.Replies.length > 0){
      x.Replies.sort(sortType[sortingType]).forEach(x => {

@@ -41,7 +41,7 @@ return this._budget;
         return `${recipeName} has been successfully cooked!`
     }
     inviteGuests(name, dish){
-        if(!this.dishes.some(x => x.recipeName === dish)){
+        if(!this.dishes.some(x =>    x.recipeName === dish)){
             throw new Error('We do not have this dish')
         }
         if(this.guests[name] !== undefined){
