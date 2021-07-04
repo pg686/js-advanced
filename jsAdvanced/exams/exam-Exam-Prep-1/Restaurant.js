@@ -5,10 +5,12 @@ this.menu = {};
 this.stockProducts  = {};
 this.history = [];
 
-    }
+    } 
     loadProducts(arr) {
         let result = [];
        
+
+        
         arr.forEach(element => {
             let [productName,productQuantity,productTotalPrice] = element.split(' ');
             productQuantity=Number(productQuantity);
@@ -95,4 +97,4 @@ console.log(kitchen.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1'
 console.log(kitchen.addToMenu('Pizza', ['Flour 0.5', 'Oil 0.2', 'Yeast 0.5', 'Salt 0.1', 'Sugar 0.1', 'Tomato sauce 0.5', 'Pepperoni 1', 'Cheese 1.5'], 15.55));
 
 
-console.log(kitchen.showTheMenu());
+console.log(kitchen.showTheMenu()); 
