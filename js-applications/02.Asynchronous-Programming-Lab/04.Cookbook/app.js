@@ -1,6 +1,6 @@
-let mainBody = document.querySelector('body main');
+function solve(){let mainBody = document.querySelector('main');
 
-window.addEventListener('load', function (){
+
     let baseUrll = 'http://localhost:3030/jsonstore/cookbook/recipes';
     fetch(`${baseUrll}`)
     .then((res) => {
@@ -10,7 +10,7 @@ window.addEventListener('load', function (){
     })
     .then((data) => {
         console.log(Object.values(data));
-      Object.values(data).forEach(element => {
+      Object.values(data).map(element => {
           console.log(element.name)
           console.log(element.img)
           let newLi = createArticle(element.name,element.img)
@@ -19,7 +19,7 @@ window.addEventListener('load', function (){
     })
     .catch((err) => console.log(err))
 
-} );
+
 
 
 
@@ -30,19 +30,20 @@ newArticle.classList.add('preview');
 let divTitle = document.createElement('div');
 divTitle.classList.add('title');
 let h2Title = document.createElement('h2');
-h2Title.textContent = `${title}`;
+h2Title.textContent = title;
 divTitle.appendChild(h2Title);
 
 let divimg = document.createElement('div');
 divimg.classList.add('small');
 let newImg = document.createElement('img');
-newImg.src = `${imgSrc}`;
+newImg.setAttribute('src',imgSrc);
 divimg.appendChild(newImg);
 
 newArticle.appendChild(divTitle);
 newArticle.appendChild(divimg);
 
 return newArticle;
+}
 }
 
 // <article class="preview">

@@ -55,7 +55,10 @@ return profileDiv;
         let hiddentDiv = parentDiv.querySelector('div');
         console.log(hiddentDiv)
         let inputs = parentDiv.querySelectorAll('input[type=radio]');
-        hiddentDiv.style.display = inputs[1].checked ? 'block': 'none';
-        
+
+        if( inputs[1].checked){
+            
+        hiddentDiv.style.display = hiddentDiv.style.display === 'none'? 'block': 'none';
+        }
     }
 }
