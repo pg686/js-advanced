@@ -39,9 +39,9 @@ function submitHandler(e)
       
             })
     })
-    form1.dataset.isEdit = undefined;
-    form1.dataset.entryId = undefined;
-    form1.querySelector('h3').textContent = 'Form'
+  form1.dataset.isEdit = undefined;
+  form1.dataset.entryId = undefined;
+  form1.querySelector('h3').textContent = 'Form'
 
 }else{
     fetch('http://localhost:3030/jsonstore/collections/books', {
