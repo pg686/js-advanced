@@ -6,28 +6,28 @@ export let allFormsTemplate = (forms) => html `${forms.map(f => formTemplate(f))
 
 export let formTemplate = (form) => html `
 <form @submit=${form.submitHandler} class=${ifDefined(form.class)} id=${form.id}>
-${form.type === 'edit' ? html `<input type="hidden" name="id">`
+${form.type === 'edit' ? html `<input type="hidden" name="id" .value=${form.idValue}>`
 : ''}
 <h3>${form.title}</h3>
 <label>TITLE</label>
-<input type="text" name="title" placeholder="Title...">
+<input type="text" name="title" placeholder="Title..." .value=${form.titleValue}>
 <label>AUTHOR</label>
-<input type="text" name="author" placeholder="Author...">
+<input type="text" name="author" placeholder="Author..." .value=${form.authorValue}>
 <input type="submit" value=${form.submitText}>
 </form>
 `
-export let tableRowTemplate = (book) => html `
+export let tableRowTemplate = (book,editHandler) => html `
 <tr class="book" data-id=${book._id}>
 <td>${book.title}</td>
 <td>${book.author}</td>
 <td>
-    <button class="edit">Edit</button>
+    <button class="edit" @click=${editHandler}>Edit</button>
     <button class="delete">Delete</button>
 </td>
 </tr>`
 
-export let allBooksTemplate = (books) => html `${books.map(b => tableRowTemplate(b))}`;
-export let tableTemplate = (books) => html `    <table>
+export let allBooksTemplate = (books,editHandler) => html `${books.map(b => tableRowTemplate(b,editHandler))}`;
+export let tableTemplate = (books,editHandler) => html `    <table>
 <thead>
     <tr>
         <th>Title</th>
@@ -36,11 +36,11 @@ export let tableTemplate = (books) => html `    <table>
     </tr>
 </thead>
 <tbody id="books-container">
-${allBooksTemplate(books)}
+${allBooksTemplate(books,editHandler)}
 </tbody>
 </table>`
 
-export let bookLibraryTemplate = (books , forms, loadBooksHandler) => html `
+export let bookLibraryTemplate = (books , forms, loadBooksHandler,editHandler) => html `
 <button id="loadBooks" @click=${loadBooksHandler}>LOAD ALL BOOKS</button>
-${tableTemplate(books)}
+${tableTemplate(books,editHandler)}
 ${allFormsTemplate(forms)}`
